@@ -46,3 +46,14 @@ module.exports.updateController = async (req, res) => {
     }
 }
 
+module.exports.deleteController = async (req, res) =>{
+    try {
+        const id = req.params.id
+        const deleteUser = await userModel.findByIdAndDelete(id)
+
+        res.send({message : "user deleted"})
+    } catch (error) {
+        res.send(500).json({message : "internal server error"})
+    }
+}
+
